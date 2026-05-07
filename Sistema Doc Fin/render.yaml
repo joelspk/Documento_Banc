@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: pdf-combiner-fundunesp
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: APP_PASSWORD
+        sync: false
+      - key: MAX_UPLOAD_MB
+        value: "500"
+      - key: JOB_TTL_HOURS
+        value: "24"
