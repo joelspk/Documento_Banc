@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: pdf-combiner-fundunesp
+    env: python
+    plan: standard
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    healthCheckPath: /health
+    envVars:
+      - key: APP_PASSWORD
+        sync: false
+      - key: MAX_UPLOAD_MB
+        value: "2048"
+      - key: JOB_TTL_HOURS
+        value: "24"
+      - key: JOBS_DIR
+        value: "/var/data/web_jobs"
